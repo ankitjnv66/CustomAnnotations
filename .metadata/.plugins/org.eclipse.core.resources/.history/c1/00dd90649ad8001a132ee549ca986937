@@ -1,0 +1,23 @@
+
+interface Formula{
+	int calculate(int x);
+	default double sqrt(int x) {
+		return Math.sqrt(x);
+	}
+}
+public class FirstClass {
+
+	public static void main(String[] args) {
+		
+		Formula formula = new Formula() {
+			@Override
+			public int calculate(int x) {
+				return x*x;
+			}
+		};
+		
+		System.out.println(formula.calculate(5));
+		System.out.println(formula.sqrt(16));
+	}
+
+}

@@ -1,0 +1,130 @@
+package com.example.h2db.h2db_use;
+HowToDoInJava
+
+Python
+Java
+Java 8
+Regex
+Spring Boot
+ 
+ Home / Spring Boot 2 / Spring boot crud operations example with hibernate
+Spring boot crud operations example with hibernate
+Last Updated On June 6, 2019
+
+Learn to create apis/methods for crud operations in spring boot application which modify the data in database using hibernate/jpa persistence apis.
+
+1. Overview
+In this example, we are creating crud operations and exposing them through REST APIs so that UI clients can invoke these operations. The demo operations enable the clients to modify the employee records in database.
+
+The purpose of this demo is to showcase the nuts and bolts, which make this interaction possible, not covering the complexity in business logic involved in real world applications.
+
+2. Maven Dependencies
+In this example, we are using maven to add runtime jars in project. If you are using gradle then please find related dependencies.
+
+pom.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+    http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.5.RELEASE</version>
+        <relativePath /> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.howtodoinjava.demo</groupId>
+    <artifactId>SpringBoot2Demo</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>SpringBoot2Demo</name>
+    <description>Demo project for Spring Boot</description>
+ 
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+ 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+ 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+ 
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+ 
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+ 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+ 
+</project>
+spring-boot-starter-web : It is used for building web layer, including REST APIs, applications using Spring MVC. Uses Tomcat as the default embedded container.
+spring-boot-starter-data-jpa : It includes spring data, hibernate, HikariCP, JPA API, JPA Implementation (default is hibernate), JDBC and other required libraries.
+h2 : Though we can add any database easily using datasource properties in application.properties file, we are using h2 database in reduce unnecessacery complexity.
+spring-boot-starter-test : It is used to test Spring Boot applications with libraries including JUnit, Hamcrest and Mockito.
+3. Hibernate Configuration
+3.1. Entity and repository
+The first step to work with data in database is to model it’s structure in JPA entity classes and create repository interfaces for them.
+
+Whenever possible, extend JpaRepository interface to allows to create repository implementations automatically, at runtime, for any given entity class. The types of entity class and it’s ID field are specified in the generic parameters on JpaRepository.
+
+Remember to include only JPA API annotations (javax.persistence.*) to de-couple hibernate from application code.
+
+EmployeeEntity.java
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+ 
+@Entity
+@Table(name="TBL_EMPLOYEES")
+public class EmployeeEntity {
+ 
+    @Id
+    @GeneratedValue
+    private Long id;
+     
+    @Column(name="first_name")
+    private String firstName;
+     
+    @Column(name="last_name")
+    private String lastName;
+     
+    @Column(name="email", nullable=false, length=200)
+    private String email;
+     
+    //Setters and getters
+ 
+    @Override
+    public String toString() {
+        return "EmployeeEntity [id=" + id + ", firstName=" + firstName + 
+                ", lastName=" + lastName + ", email=" + email   + "]";
+    }
+}
+EmployeeRepository.java
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+ 
+import com.howtodoinjava.demo.entity.EmployeeEntity;
+ 

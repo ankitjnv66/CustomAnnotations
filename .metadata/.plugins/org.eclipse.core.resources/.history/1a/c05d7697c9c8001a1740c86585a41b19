@@ -1,0 +1,24 @@
+package com.ankit.microservices_learning.microservicelearning;
+
+import java.util.Locale;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.servlet.WebMvcProperties.LocaleResolver;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+
+@SpringBootApplication
+public class MicroservicelearningApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(MicroservicelearningApplication.class, args);
+	}
+	
+	@Bean
+	public LocaleResolver localResolver() {
+		SessionLocaleResolver localResolver = new SessionLocaleResolver();
+		localResolver.setDefaultLocale(Locale.US);
+	}
+
+}

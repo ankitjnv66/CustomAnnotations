@@ -1,0 +1,284 @@
+@RestController
+@RequestMapping("/employees")
+public class EmployeeController 
+{
+    @Autowired
+    EmployeeService service;
+ 
+    @GetMapping
+    public ResponseEntity<List<EmployeeEntity>> getAllEmployees() {
+        List<EmployeeEntity> list = service.getAllEmployees();
+ 
+        return new ResponseEntity<List<EmployeeEntity>>(list, new HttpHeaders(), HttpStatus.OK);
+    }
+ 
+    @GetMapping("/{id}")
+    public ResponseEntity<EmployeeEntity> getEmployeeById(@PathVariable("id") Long id) 
+                                                    throws RecordNotFoundException {
+        EmployeeEntity entity = service.getEmployeeById(id);
+ 
+        return new ResponseEntity<EmployeeEntity>(entity, new HttpHeaders(), HttpStatus.OK);
+    }
+ 
+    @PostMapping
+    public ResponseEntity<EmployeeEntity> createOrUpdateEmployee(EmployeeEntity employee)
+                                                    throws RecordNotFoundException {
+        EmployeeEntity updated = service.createOrUpdateEmployee(employee);
+        return new ResponseEntity<EmployeeEntity>(updated, new HttpHeaders(), HttpStatus.OK);
+    }
+ 
+    @DeleteMapping("/{id}")
+    public HttpStatus deleteEmployeeById(@PathVariable("id") Long id) 
+                                                    throws RecordNotFoundException {
+        service.deleteEmployeeById(id);
+        return HttpStatus.FORBIDDEN;
+    }
+ 
+}
+6. Spring boot crud operations demo
+Now when coding part is done, start the spring boot application. It will live all URL endpoints along with H2 database console.
+
+HTTP GET http://localhost:8080/employees
+Console
+Hibernate: 
+    select
+        employeeen0_.id as id1_0_,
+        employeeen0_.email as email2_0_,
+        employeeen0_.first_name as first_na3_0_,
+        employeeen0_.last_name as last_nam4_0_ 
+    from
+        tbl_employees employeeen0_
+API Response
+[
+    {
+        "id": 1,
+        "firstName": "Lokesh",
+        "lastName": "Gupta",
+        "email": "abc@gmail.com"
+    },
+    {
+        "id": 2,
+        "firstName": "Deja",
+        "lastName": "Vu",
+        "email": "xyz@email.com"
+    },
+    {
+        "id": 3,
+        "firstName": "Caption",
+        "lastName": "America",
+        "email": "cap@marvel.com"
+    }
+]
+HTTP GET http://localhost:8080/employees/2
+Console
+Hibernate: 
+    select
+        employeeen0_.id as id1_0_0_,
+        employeeen0_.email as email2_0_0_,
+        employeeen0_.first_name as first_na3_0_0_,
+        employeeen0_.last_name as last_nam4_0_0_ 
+    from
+        tbl_employees employeeen0_ 
+    where
+        employeeen0_.id=?
+API Response
+{
+    "id": 2,
+    "firstName": "Deja",
+    "lastName": "Vu",
+    "email": "xyz@email.com"
+}
+Drop me your questions in comments related to creating and exposing CRUD operations in spring boot applications having JPA hibernate to manage backend data updates.
+
+Happy Learning !!
+
+Sourcecode download
+Was this article helpful?
+YES
+NO
+TWITTER	FACEBOOK	LINKEDIN	REDDIT	POCKET
+Previous Tutorial:
+Spring boot hibernate configuration example
+Next Tutorial:
+Spring boot pagination and sorting example
+About Lokesh Gupta
+A family guy with fun loving nature. Love computers, programming and solving everyday problems. Find me on Facebook and Twitter.
+
+Feedback, Discussion and Comments
+Armin
+
+April 17, 2020
+
+Hi, example shows application.properties with
+spring.datasource.url=spring.datasource.url=jdbc:h2:file:~/test
+But then I got an error, that table TBL_employees does not exisit.
+It only works with
+spring.datasource.url=jdbc:h2:file:C:/temp/test
+Why?
+
+Reply
+sreedevi
+
+May 24, 2020
+
+Use spring.datasource.url=jdbc:h2:mem:testdb to resolve the issue
+
+Reply
+bhagyashri dhanwate sunil
+
+March 13, 2020
+
+Cannot load JDBC driver class ‘com.microsoft.sqlserver.jdbc.SQLServerDriver’ sir plzz give solution
+
+Reply
+saivamshi
+
+March 11, 2020
+
+hi, could you please provide how to upload images along with the above code.
+
+Reply
+Kody Harper
+
+February 16, 2020
+
+I am also getting a 500 Internal Service Error related to the ID when making a new post through postman using JSON type. Can we get an example of a successful post request?
+
+Reply
+Sreedevi
+
+May 24, 2020
+
+I am also unable to use post method due to the same error
+
+Reply
+Anand
+
+December 9, 2019
+
+Please add this code in EmployeeEntity class @GeneratedValue(strategy = GenerationType.IDENTITY) other it will throw sequence hibernate_sequence not found sql statement h2 exception
+
+Reply
+Bro Ther
+
+December 4, 2019
+
+Simple and efficient app, thank you sir!
+
+Reply
+Bruce Baron
+
+November 27, 2019
+
+In the delete method, why do you return HttpStatus.FORBIDDEN? That would indicate the caller did not have permission to delete, even though the delete was successful.
+
+Reply
+shanmuga
+
+October 17, 2019
+
+i created new application and done whatever you have done with different form fields but getting 404 error response. i debug the application it is not going inside to controller methods.
+
+Reply
+Logeshwari
+
+October 12, 2019
+
+I am getting the null value for one filed in my obj ..don’t know why
+
+@RequestMapping(value = "api/add/", method = RequestMethod.POST)
+ 
+    public void saveStudentDetails(@RequestBody Student rr) {
+ 
+        StudentDetails sd = new StudentDetails();
+        emrepo.save(sd); 
+        }
+Reply
+Harold
+
+February 6, 2020
+
+@RequestBody Solo debe agregase esta anotación para que el controller reciba los parámetros de entrada del Json
+
+Reply
+Tesh
+
+September 27, 2019
+
+JPA insert work but update failed with spring boot 2.1.6
+HHH000346: Error during managed flush [java.lang.StackOverflowError]
+exception org.springframework.transaction.TransactionSystemException: Could not commit JPA transaction; nested exception is javax.persistence.RollbackException: Error while committing the transaction
+
+Reply
+subhankar das
+
+September 24, 2019
+
+this code is not working for “post” saying “status”:500,”error”:”Internal Server Error”,”message”:”The given id must not be null!;
+
+Reply
+Dnyanesh Misal
+
+September 26, 2019
+
+Please use @RequestBody annotation which is missing in createOrUpdateEmployee method of controller:
+
+@PostMapping
+    public ResponseEntity<EmployeeEntity> createOrUpdateEmployee(@RequestBody EmployeeEntity employee)
+                                                    throws RecordNotFoundException {
+        EmployeeEntity updated = service.createOrUpdateEmployee(employee);
+        return new ResponseEntity<EmployeeEntity>(updated, new HttpHeaders(), HttpStatus.CREATED);
+    }
+Reply
+Aravind
+
+May 5, 2020
+
+Thanks , it worked
+
+Reply
+Tusar
+
+February 8, 2020
+
+Hello, I think your request’s content-type is not understood by controller. I was trying to create a new EmployeeEntity using POST using ‘raw’ JSON – I received the above error. But then I switched to ‘form-data’ in Postman and added id, firstName, lastName, email in request body – and it started working.
+
+Reply
+luis
+
+September 24, 2019
+
+Hi
+
+Is my first time trying this I get this error Error: Could not find or load main class com.howtodoinjava.demo.DemoApplication
+
+Thank,
+Luis
+
+Reply
+Romain
+
+September 23, 2019
+
+Great, makes it simple and easy 🙂
+Thank you
+
+Reply
+Unknown
+
+August 4, 2019
+
+where is class RecordNotFoundException? where is this package com.howtodoinjava.demo.exception?
+
+Reply
+Lokesh Gupta
+
+August 4, 2019
+
+Please check the attached source code.
+
+package com.howtodoinjava.demo.exception;
+ 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+ 

@@ -1,0 +1,50 @@
+package com.example.h2db.h2db_use;
+@Repository
+public interface EmployeeRepository 
+        extends JpaRepository<EmployeeEntity, Long> {
+ 
+}
+3.2. Datasource Configuration
+To connect to database, we must configure the datasource. We are using H2 database so respective properties are used.
+
+Also, we have used couple of more properties to enable H2 console and extensive logging.
+
+application.properties
+spring.datasource.url=jdbc:h2:file:~/test
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+ 
+# Enabling H2 Console
+spring.h2.console.enabled=true
+ 
+# Custom H2 Console URL
+spring.h2.console.path=/h2-console
+ 
+# create database schema from SQL files
+spring.jpa.hibernate.ddl-auto=none
+ 
+#Turn Statistics on and log SQL stmts
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.properties.hibernate.generate_statistics=false
+#logging.level.org.hibernate.type=trace
+#logging.level.org.hibernate.stat=debug
+ 
+logging.pattern.console=%d{yyyy-MM-dd HH:mm:ss} - %msg%n
+4. Service (uses repository)
+The service layer is optional – still recommended to perform additional business logic if any. Generally, we will connect with repository here for crud operations.
+
+EmployeeService.java
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+ 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+ 
+import com.howtodoinjava.demo.entity.EmployeeEntity;
+import com.howtodoinjava.demo.exception.RecordNotFoundException;
+import com.howtodoinjava.demo.repository.EmployeeRepository;
+ 

@@ -1,0 +1,15 @@
+
+interface Formula{
+	double calculate(int x);
+	default double sqrt(int x) {
+		return Math.sqrt(x);
+	}
+}
+public class FirstClass {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,26 @@
+package com.ankit.microservices_learning.microservicelearning.user;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class UserDAO {
+
+	List<User> userList = new ArrayList<>();
+	public List<User> findAllUser(){
+		return userList;
+	}
+	
+	public User findOneUser(int userId) {
+		for(User user : userList) {
+			if(user.getUserId()==userId) {
+				return user;
+			}
+			return null;
+		}
+	}
+	saveUser();
+	removeUser();
+}

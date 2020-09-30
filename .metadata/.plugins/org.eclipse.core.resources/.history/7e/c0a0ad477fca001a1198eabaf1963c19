@@ -1,0 +1,3 @@
+insert into user valuse(1, sysdate(), 'b');
+insert into user valuse(12, sysdate(), 'bc');
+insert into user valuse(11, sysdate(), 'bd');

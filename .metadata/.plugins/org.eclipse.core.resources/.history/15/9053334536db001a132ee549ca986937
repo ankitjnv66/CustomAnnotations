@@ -1,0 +1,38 @@
+package interview;
+
+
+class Dog{
+	private String name;
+
+	public Dog(String name) {
+		super();
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Dog() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "Dog [name=" + name + "]";
+	}
+	
+}
+public class CheckingPassByValueOrReference {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,28 @@
+package interview;
+
+import java.io.Serializable;
+
+class Employee implements Serializable{
+	private String fName;
+	private String lName;
+	private transient double contact; //transient variables will not be serialized, serialised object holds null
+
+	private static String checkValue; //static variables will not be serialized, serialised object holds null
+
+	public Employee(String fName, String lName, double contact, String checkValue) {
+		super();
+		this.fName = fName;
+		this.lName = lName;
+		this.contact = contact;
+		Employee.checkValue = checkValue;
+	}
+	
+}
+public class SerializationDeserializationUnderstanding {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

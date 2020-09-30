@@ -1,0 +1,37 @@
+package com.ankit.microservices_learning.microservicelearning.user;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class UserDAO {
+
+	private static List<User> userList = new ArrayList<>();
+
+	public List<User> findAllUser() {
+		return userList;
+	}
+	private static int userCount = 3;
+
+	static {
+		userList.add(new User( "Ankit", new Date()));
+		userList.add(new User("Ankur", new Date()));
+		userList.add(new User("Amit", new Date()));
+	}
+
+	public User findOneUser(String userId) {
+		for (User user : userList) {
+			if (user.getUserId().equals(userId)) {
+				return user;
+			}
+			return null;
+		}
+	}
+
+	saveUser();
+
+	removeUser();
+}

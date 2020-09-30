@@ -1,0 +1,114 @@
+@ResponseStatus(value = HttpStatus.NOT_FOUND)
+public class RecordNotFoundException extends Exception {
+ 
+    private static final long serialVersionUID = 1L;
+     
+    public RecordNotFoundException(String message) {
+        super(message);
+    }
+     
+    public RecordNotFoundException(String message, Throwable t) {
+        super(message, t);
+    }
+}
+Reply
+Ask Questions & Share Feedback
+Please do not submit a comment only to say "Thank you".
+Comment
+
+*Want to Post Code Snippets or XML content? Please use [java] ... [/java] tags otherwise code may not appear partially or even fully. e.g.
+[java] 
+public static void main (String[] args) {
+...
+} 
+[/java]
+Name *
+
+Email *
+
+Website
+
+Search Tutorials
+Type and Press ENTER...
+
+
+
+Spring Boot 2 Tutorial
+Spring Boot – Introduction
+Spring Boot – Starter parent
+Spring Boot – Starter templates
+Spring Boot – Multi-module project
+Spring Boot – Annotations
+Spring Boot – Auto configuration
+Spring Boot – AOP
+Spring Boot – Logging
+Spring Boot – DevTools
+Spring Boot – WAR Packaging
+Spring Boot – REST API
+Spring Boot – CRUD
+Spring Boot – OAuth2
+Spring Boot – Testing
+Spring Boot – RestTemplate
+Spring Boot – Thymeleaf
+Spring Boot – Hibernate
+Spring Boot – DataSource
+Spring Boot – Error Handling
+Spring Boot – Caching
+Spring Boot – Retry
+Spring Boot – BasicAuth
+Spring Boot – H2 Database
+Spring Boot – Ehcache 3.x
+Spring Boot – Gson
+Spring Boot – RMI
+Spring Boot – Send Email
+Spring Boot – Interview Questions
+Spring Boot Tutorial
+Spring Boot – CommandLineRunner
+Spring Boot – Configure Jetty
+Spring Boot – Tomcat Default Port
+Spring Boot – Context Root
+Spring Boot – SSL [https]
+Spring Boot – Get all loaded beans
+Spring Boot – PropertyEditor
+Spring Boot – @EnableScheduling
+Spring Boot – Jersey
+Spring Boot – SOAP Webservice
+Spring Boot – SOAP Client
+Spring Boot – JMSTemplate
+Spring Boot – REST APIs
+Spring Boot – JSP View
+Spring Boot – Actuator endpoints
+Spring Boot – Role Based Security
+Spring Boot – RSS / ATOM Feed
+Spring Boot – Ehcache 2.x
+Popular Tutorials
+Java 14 Tutorial
+Java 8 Tutorial
+Java Tutorial
+Java Collections
+Java Concurrency
+Java Date and Time
+Java Examples
+Spring Boot Tutorial
+Hibernate Tutorial
+Jersey Tutorial
+Maven Tutorial
+Log4j Tutorial
+Regex Tutorial
+Python Tutorial
+Meta Links
+Advertise
+Contact Us
+Privacy policy
+About Me
+Recommended Reading
+10 Life Lessons
+Secure Hash Algorithms
+How Web Servers work?
+How Java I/O Works Internally?
+Best Way to Learn Java
+Java Best Practices Guide
+Microservices Tutorial
+REST API Tutorial
+How to Start New Blog
+Copyright © 2016 · HowToDoInjava.com · All Rights Reserved. | Sitemap

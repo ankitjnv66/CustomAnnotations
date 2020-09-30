@@ -1,0 +1,9 @@
+package com.howtodoinjava.demo.web;
+
+public class CheckingException extends Exception {
+
+	public CheckingException(String args0) {
+		// TODO Auto-generated constructor stub
+		super(args0);
+	}
+}

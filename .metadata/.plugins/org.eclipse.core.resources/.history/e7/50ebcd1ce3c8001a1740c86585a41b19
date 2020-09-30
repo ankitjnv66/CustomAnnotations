@@ -1,0 +1,41 @@
+package com.ankit.microservices_learning.microservicelearning.user;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(value = {"default1", "default3"})
+public class SomeBean {
+
+	private String default1;
+	
+	//@JsonIgnore
+	private String default2;
+	
+	private String default3;
+	public String getDefault1() {
+		return default1;
+	}
+	public void setDefault1(String default1) {
+		this.default1 = default1;
+	}
+	public String getDefault2() {
+		return default2;
+	}
+	public void setDefault2(String default2) {
+		this.default2 = default2;
+	}
+	public String getDefault3() {
+		return default3;
+	}
+	public void setDefault3(String default3) {
+		this.default3 = default3;
+	}
+	public SomeBean(String default1, String default2, String default3) {
+		super();
+		this.default1 = default1;
+		this.default2 = default2;
+		this.default3 = default3;
+	}
+	
+	
+}

@@ -1,0 +1,45 @@
+package com.howtodoinjava.demo.exception;
+
+import java.util.Date;
+
+public class ExceptionResponse {
+
+	private Date timeStamp;
+	private String message;
+	private String detais;
+	public Date getTimeStamp() {
+		return timeStamp;
+	}
+	public void setTimeStamp(Date timeStamp) {
+		this.timeStamp = timeStamp;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	public String getDetais() {
+		return detais;
+	}
+	public void setDetais(String detais) {
+		this.detais = detais;
+	}
+	@Override
+	public String toString() {
+		return "ExceptionResponse [timeStamp=" + timeStamp + ", message=" + message + ", detais=" + detais + "]";
+	}
+	public ExceptionResponse(Date timeStamp, String message, String detais) {
+		super();
+		this.timeStamp = timeStamp;
+		this.message = message;
+		this.detais = detais;
+	}
+	public ExceptionResponse() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+}

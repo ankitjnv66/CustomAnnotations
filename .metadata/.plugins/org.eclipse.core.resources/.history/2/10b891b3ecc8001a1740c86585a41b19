@@ -1,0 +1,58 @@
+package com.example.h2db.h2db_use;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class UserDAO {
+
+	private static List<User> userList = new ArrayList<>();
+
+	public List<User> findAllUser() {
+		return userList;
+	}
+	private static int userCount = 3;
+
+	/*
+	static {
+		userList.add(new User(1, "Ankit", new Date()));
+		userList.add(new User(2, "Ankur", new Date()));
+		userList.add(new User(3, "Amit", new Date()));
+	}
+	*/
+
+	
+	public User findOneUser(Integer userId) {
+		for (User user : userList) {
+			if (user.getUserId() == userId) {
+				return user;
+			}
+		}
+		return null;
+	}
+	
+
+	public User saveUser(User user) {
+		if(user.getUserId() == null) {
+			user.setUserId(++userCount);
+		}
+		userList.add(user);
+		return user;
+	}
+	
+	public boolean removeUser(Integer userId) {
+		Iterator<User> itreator = userList.iterator();
+		while(itreator.hasNext()) {
+			User user = (User)itreator.next();
+			if(user.getUserId() == userId) {
+				itreator.remove();
+				return true;
+			}
+		}
+		return false;
+	}
+}

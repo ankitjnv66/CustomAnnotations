@@ -1,0 +1,8 @@
+package com.ankit.microservices_learning.microservicelearning;
+
+public class User {
+	String userId;
+	String userName;
+	Date userDOB;
+
+}

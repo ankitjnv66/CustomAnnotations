@@ -1,0 +1,5 @@
+package com.ankit.microservices_learning.microservicelearning.exception;
+
+public class CustomizedUserNotFoundException {
+
+}

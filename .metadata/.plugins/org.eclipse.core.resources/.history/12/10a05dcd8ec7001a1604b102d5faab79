@@ -1,0 +1,46 @@
+package com.ankit.microservices_learning.microservicelearning.user;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class ProjectController {
+	
+	@Autowired
+	private UserDAO userDao;
+	
+	@RequestMapping("/get-message")
+	public String getMessage() {
+		return "Let's start!!";
+	}
+	
+	
+	//@PathVariable
+	@RequestMapping("/get-message/{passedName}")
+	public String getMessage(@PathVariable  String passedName) {
+		return "You are good to go : "+passedName;
+	}
+	
+	//@RequestParam
+	@RequestMapping("/get-msg")
+	public String getMessageByPathParm(@RequestParam String passedName) {
+		return "You are good to go : "+passedName;
+	}
+	
+	@RequestMapping("/user/getAllUser")
+	public List<User> getAllUser(){
+		return userDao.findAllUser();
+	}
+	
+	@RequestMapping("/saveData")
+	public User saveUSer(@RequestBody User user) {
+		return userDao.saveUser(user);
+	}
+
+}

@@ -1,0 +1,13 @@
+package com.ankit.microservices_learning.microservicelearning.user;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class FilterController {
+
+	@RequestMapping("/getBean")
+	public SomeBean getBean() {
+		return new SomeBean("default1","default2","default3");
+	}
+}
